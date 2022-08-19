@@ -10,8 +10,17 @@ export default new Vuex.Store({
     torta: null,
     torteInformation: {
       naziv: ''
+    },
+    kolaci: [],
+    kolac: null,
+    kolaciInformation:{
+      naziv: '', cena: ''
+    },
+    mafini: [],
+    mafin: null,
+    mafiniInformation:{
+      naziv: '', cena: ''
     }
-
   },
   mutations: {
     setToken(state, token) {
@@ -24,14 +33,30 @@ export default new Vuex.Store({
       localStorage.token = '';
     },
     setTorteInformation(state, torta) {
-      // state.flightInformation.id = flight.id;
       state.torteInformation.naziv = torta.naziv;
      
     },
     
     setTorte(state, torte) {
       state.torte = torte;
-    }
+    },
+     setKolaciInformation(state, kolac){
+      state.kolaciInformation.naziv = kolac.naziv;
+      state.kolaciInformation.cena = kolac.cena;
+     },
+
+     setKolaci(state, kolaci){
+       state.kolaci = kolaci;
+     },
+     setMafiniInformation(state, mafin){
+      state.mafiniInformation.naziv = mafin.naziv;
+      state.mafiniInformation.cena = mafin.cena;
+     },
+
+     setMafini(state, mafini){
+       state.mafini = mafini;
+     }
+
   },
   actions: {
     register({ commit }, obj) {
@@ -77,9 +102,33 @@ export default new Vuex.Store({
       })
           .then( obj => obj.json() )
           .then( res => commit('setTorte', res));
-    }
+    },
     
 
+    //dodato za kolace
+    fetchKolaci({ commit }){
+      fetch('http://localhost:7000/admin/kolaci',{
+        headers: {
+          'authorization': `Bearer ${localStorage.token}`
+        },
+        method: 'GET'
+      })
+          .then( obj => obj.json() )
+          .then( res => commit('setKolaci', res));
+    },
+
+      //dodato za mafine
+      fetchMafini({ commit }){
+        fetch('http://localhost:7000/api/mafini',{
+          headers: {
+            'authorization': `Bearer ${localStorage.token}`
+          },
+          method: 'GET'
+        })
+            .then( obj => obj.json() )
+            .then( res => commit('setMafini', res));
+      }
+  
   },
   modules: {
   }

@@ -11,7 +11,7 @@ import KolaciList from '@/components/KolaciList.vue';
 import {mapActions} from 'vuex';
 
 export default {
-  name: "Flight",
+  name: "kolaci",
 
   components: {
     KolaciList
@@ -23,7 +23,7 @@ export default {
   },
 
   mounted() {
-    this.fetchFlights();
+    this.fetchKolaci();
   },
 
   computed: {
@@ -34,7 +34,7 @@ export default {
 
   methods: {
     ...mapActions([
-      'fetchFlights'
+      'fetchKolaci'
     ])
   }
 

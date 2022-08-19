@@ -2,7 +2,7 @@
   <div>
     <b-pagination
         v-model="currentPage"
-        :total-rows="flightsTable"
+        :total-rows="kolaciTable"
         :per-page="perPage"
         aria-controls="image-table"
     ></b-pagination>
@@ -11,7 +11,7 @@
         id="image-table"
         hover
         fixed
-        :items="flightsTable"
+        :items="kolaciTable"
         :fields="fields"
         small
         :per-page="perPage"
@@ -21,7 +21,7 @@
     </b-table>
     <b-pagination
         v-model="currentPage"
-        :total-rows="flightsTable.length"
+        :total-rows="kolaciTable.length"
         :per-page="perPage"
         aria-controls="image-table"
     ></b-pagination>
@@ -34,11 +34,11 @@
 import {  mapMutations , mapState } from 'vuex';
 
 export default {
-  name: "FlightList",
+  name: "KolaciList",
 
   data() {
     return {
-      fields: ['flightDestination', 'departure', 'arrival', 'price', 'airline', 'numberOfSeats', 'typeOfAirplane'],
+      fields: ['naziv', 'cena'],
       items: [],
       currentPage: 1,
       perPage: 10,
@@ -47,12 +47,12 @@ export default {
 
   computed: {
     ...mapState([
-      'flights',
+      'kolaci',
       'token',
-        'flightInformation'
+        'kolaciInformation'
     ]),
-    flightsTable: function () {
-      return this.flights;
+    kolaciTable: function () {
+      return this.kolaci;
       // .filter(book => book.libraryId == this.$route.params.id); //mora da bude == umesto ===, jer inace nece da ih nadje kada se uradi drugi put
     }
   },
@@ -67,17 +67,17 @@ export default {
   methods: {
 
     ...mapMutations([
-      'setFlightInformation'
+      'setKolaciInformation'
     ]),
 
     rowClicked(record) {
-      this.setFlightInformation(record);
+      this.setKolaciInformation(record);
     },
     goToReservation() {
       if (this.token !== "") {
-        let flightReservation = this.flightInformation
-        console.log(flightReservation);
-        this.$router.push({ name: 'Reservations', params: { flightReservation } });
+        let kolaciReservation = this.kolaciInformation
+        console.log(kolaciReservation);
+        this.$router.push({ name: 'Reservations', params: { kolaciReservation } });
       }
       else alert("You cannot make reservations. Log in first!");
     }

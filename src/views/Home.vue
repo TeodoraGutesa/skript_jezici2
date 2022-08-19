@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <img alt="Kolaci slika" src="../assets/orange-cardamom-butter-cakes-with-rose-water-icing-FT-RECIPE0721.jpg" width = 100% height = 5>
+    <HelloWorld msg="Poslaticarnica"/>
   </div>
 </template>
 

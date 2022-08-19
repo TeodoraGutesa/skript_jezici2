@@ -11,7 +11,7 @@ import MafiniList from '@/components/MafiniList.vue';
 import {mapActions} from 'vuex';
 
 export default {
-  name: "Flight",
+  name: "mafini",
 
   components: {
     MafiniList
@@ -23,7 +23,7 @@ export default {
   },
 
   mounted() {
-    this.fetchFlights();
+    this.fetchMafini();
   },
 
   computed: {
@@ -34,7 +34,7 @@ export default {
 
   methods: {
     ...mapActions([
-      'fetchFlights'
+      'fetchMafini'
     ])
   }
 

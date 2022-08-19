@@ -2,7 +2,7 @@
   <div>
     <b-pagination
         v-model="currentPage"
-        :total-rows="flightsTable"
+        :total-rows="mafiniTable"
         :per-page="perPage"
         aria-controls="image-table"
     ></b-pagination>
@@ -11,7 +11,7 @@
         id="image-table"
         hover
         fixed
-        :items="flightsTable"
+        :items="mafiniTable"
         :fields="fields"
         small
         :per-page="perPage"
@@ -21,7 +21,7 @@
     </b-table>
     <b-pagination
         v-model="currentPage"
-        :total-rows="flightsTable.length"
+        :total-rows="mafiniTable.length"
         :per-page="perPage"
         aria-controls="image-table"
     ></b-pagination>
@@ -34,11 +34,11 @@
 import {  mapMutations , mapState } from 'vuex';
 
 export default {
-  name: "FlightList",
+  name: "MafiniList",
 
   data() {
     return {
-      fields: ['flightDestination', 'departure', 'arrival', 'price', 'airline', 'numberOfSeats', 'typeOfAirplane'],
+      fields: ['naziv', 'cena'],
       items: [],
       currentPage: 1,
       perPage: 10,
@@ -47,12 +47,12 @@ export default {
 
   computed: {
     ...mapState([
-      'flights',
+      'mafini',
       'token',
-        'flightInformation'
+        'mafiniInformation'
     ]),
-    flightsTable: function () {
-      return this.flights;
+    mafiniTable: function () {
+      return this.mafini;
       // .filter(book => book.libraryId == this.$route.params.id); //mora da bude == umesto ===, jer inace nece da ih nadje kada se uradi drugi put
     }
   },
@@ -67,17 +67,17 @@ export default {
   methods: {
 
     ...mapMutations([
-      'setFlightInformation'
+      'setMafiniInformation'
     ]),
 
     rowClicked(record) {
-      this.setFlightInformation(record);
+      this.setMafiniInformation(record);
     },
     goToReservation() {
       if (this.token !== "") {
-        let flightReservation = this.flightInformation
-        console.log(flightReservation);
-        this.$router.push({ name: 'Reservations', params: { flightReservation } });
+        let mafinReservation = this.mafiniInformation
+        console.log(mafinReservation);
+        this.$router.push({ name: 'Reservations', params: { mafinReservation } });
       }
       else alert("You cannot make reservations. Log in first!");
     }
