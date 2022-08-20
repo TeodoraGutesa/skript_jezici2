@@ -53,7 +53,6 @@ export default {
     ]),
     mafiniTable: function () {
       return this.mafini;
-      // .filter(book => book.libraryId == this.$route.params.id); //mora da bude == umesto ===, jer inace nece da ih nadje kada se uradi drugi put
     }
   },
 
@@ -79,7 +78,7 @@ export default {
         console.log(mafinReservation);
         this.$router.push({ name: 'Reservations', params: { mafinReservation } });
       }
-      else alert("You cannot make reservations. Log in first!");
+      else alert("You must be logged in");
     }
   }
 }

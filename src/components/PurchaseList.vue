@@ -2,7 +2,7 @@
   <div>
     <b-pagination
         v-model="currentPage"
-        :total-rows="torteTable"
+        :total-rows="purchaseTable"
         :per-page="perPage"
         aria-controls="image-table"
     ></b-pagination>
@@ -11,7 +11,7 @@
         id="image-table"
         hover
         fixed
-        :items="torteTable"
+        :items="purchaseTable"
         :fields="fields"
         small
         :per-page="perPage"
@@ -21,7 +21,7 @@
     </b-table>
     <b-pagination
         v-model="currentPage"
-        :total-rows="torteTable.length"
+        :total-rows="purchaseTable.length"
         :per-page="perPage"
         aria-controls="image-table"
     ></b-pagination>
@@ -34,11 +34,11 @@
 import {  mapMutations , mapState } from 'vuex';
 
 export default {
-  name: "TorteList",
+  name: "PurchaseList",
 
   data() {
     return {
-      fields: ['naziv'],
+      fields: ['naziv, 'cena'],
       items: [],
       currentPage: 1,
       perPage: 10,
@@ -47,11 +47,11 @@ export default {
 
   computed: {
     ...mapState([
-      'torte',
+      'purchase',
       'token',
-        'torteInformation'
+        'purchaseInformation'
     ]),
-    torteTable: function () {
+    purchaseTable: function () {
       return this.torte;
     }
   },

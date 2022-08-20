@@ -11,7 +11,7 @@ import TorteList from '@/components/TorteList.vue';
 import {mapActions} from 'vuex';
 
 export default {
-  name: "Torte",
+  name: "torte",
 
   components: {
     TorteList
@@ -23,7 +23,7 @@ export default {
   },
 
   mounted() {
-    this.fetchFlights();
+    this.fetchTorte();
   },
 
   computed: {
@@ -34,7 +34,7 @@ export default {
 
   methods: {
     ...mapActions([
-      'fetchFlights'
+      'fetchTorte'
     ])
   }
 

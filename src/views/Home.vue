@@ -1,7 +1,8 @@
 <template>
   <div class="home">
-    <img alt="Kolaci slika" src="../assets/orange-cardamom-butter-cakes-with-rose-water-icing-FT-RECIPE0721.jpg" width = 100% height = 5>
-    <HelloWorld msg="Poslaticarnica"/>
+        <img alt="Kolaci slika" src="../assets/orange-cardamom-butter-cakes-with-rose-water-icing-FT-RECIPE0721.jpg" width = 80% height = "500px">
+        <HelloWorld msg="Poslaticarnica"/>
+
   </div>
 </template>
 

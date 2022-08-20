@@ -53,7 +53,6 @@ export default {
     ]),
     kolaciTable: function () {
       return this.kolaci;
-      // .filter(book => book.libraryId == this.$route.params.id); //mora da bude == umesto ===, jer inace nece da ih nadje kada se uradi drugi put
     }
   },
 
@@ -79,7 +78,7 @@ export default {
         console.log(kolaciReservation);
         this.$router.push({ name: 'Reservations', params: { kolaciReservation } });
       }
-      else alert("You cannot make reservations. Log in first!");
+      else alert("You must be logged in!");
     }
   }
 }

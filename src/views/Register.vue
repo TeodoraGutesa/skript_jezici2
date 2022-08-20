@@ -2,7 +2,7 @@
   <div id="app">
     <Header subtitle="Create account"/>
 
-    <b-form @submit="onSubmit">
+    <b-form name = "form" @submit="onSubmit">
 
       <b-form-group label="Name:" label-for="name">
         <b-form-input id="name" v-model="form.name" placeholder="Enter name" required></b-form-input>
@@ -60,7 +60,23 @@
       ]),
 
       onSubmit(e) {
+
         e.preventDefault();
+
+      
+              let z = document.forms["form"]["password"].value;
+              if (z == "") {
+               alert("Password must be filled out");
+               return false;
+             }else if(z.length < 5){
+               alert("Password must have at least 5 characters");
+               return false;
+             }else if(z.length > 20){
+              alert("Password must have maximum 20 characters");
+              return false;
+             }
+
+
 
         this.form.admin = this.checkboxes.admin;
         this.form.moderator = this.checkboxes.moderator;

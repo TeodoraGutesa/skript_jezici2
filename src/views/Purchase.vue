@@ -1,7 +1,7 @@
 <template>
   <div id="app"  v-if="this.token">
     <Header subtitle="AAA"/>
-    <h1>Your flight reservation</h1>
+    <h1>Korpa</h1>
     <ul class="list-group">
       <li class="list-group-item">Naziv: {{this.torteInformation.naziv}}</li>
     </ul>
@@ -43,7 +43,6 @@ export default {
 
   methods: {
     ...mapActions([
-      // 'fetchDepartments'
     ]),
 
     ...mapMutations([
@@ -62,7 +61,7 @@ export default {
         this.$router.push({ name: 'Torte'});
 
       }
-      else alert("You cannot make reservations. Log in first!");
+      else alert("You must be logged in!");
     }
   },
 

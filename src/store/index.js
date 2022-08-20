@@ -93,7 +93,8 @@ export default new Vuex.Store({
             }
           });
     },
-    fetchFlights({ commit }){
+    
+    fetchTorte({ commit }){
       fetch('http://localhost:7000/admin/torte',{
         headers: {
           'authorization': `Bearer ${localStorage.token}`
