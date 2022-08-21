@@ -71,7 +71,14 @@ export default new Vuex.Store({
 
      setPurchases(state, purchases){
        state.purchases = purchases;
-     }
+     },
+
+     /*
+     addPurchase(state, obj) {
+     
+    }
+    */
+
 
   },
   actions: {
@@ -144,9 +151,18 @@ export default new Vuex.Store({
         })
             .then( obj => obj.json() )
             .then( res => commit('setMafini', res));
+      },
+  /*
+      socket_purchase({ commit }, msg) {
+        const purchase = JSON.parse(msg);
+        commit('addComment', { purchase: purchase});
       }
+  */
+  
   
   },
   modules: {
   }
+
+
 })

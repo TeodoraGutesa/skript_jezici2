@@ -19,7 +19,7 @@
         :per-page="perPage"
         aria-controls="image-table"
     ></b-pagination>
-    <b-button v-on:click="goToReservation()" >Buy</b-button>
+    <b-button v-on:click="goToBag()" >Buy</b-button>
   </div>
 </template>
 
@@ -70,16 +70,21 @@ export default {
     rowClicked(record) {
       this.setTorteInformation(record);
     },
-    goToReservation() {
+    goToBag() {
       if (this.token !== "") {
       
       var torta_object = {
         naziv: this.torteInformation.naziv
       };
      
-       this.setTorteInformation("");
+       //this.setTorteInformation("");
        this.purchases.push(torta_object);
        this.$router.push({ name: 'Purchase'});
+
+       //emituje poruku serveru
+       //this.$socket.emit('purchase', { body: torta_object, token: this.token });
+    
+
       }
       else alert("You must be logged in!");
     }

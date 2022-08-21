@@ -5,7 +5,7 @@ import router from './router'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-//import VueSocketIO from 'vue-socket.io';
+import VueSocketIO from 'vue-socket.io';
 
 Vue.config.productionTip = false
 
@@ -23,15 +23,15 @@ new Vue({
 
 
 
-/*
+
 Vue.use(new VueSocketIO({//podesavanja za server
   debug: false,
-  connection: 'ws://127.0.0.1:8000',//gde se nalazi back-end socket server
+  connection: 'ws://127.0.0.1:8000',
   vuex: {
     store,
     actionPrefix: 'socket_',
   }
 }));
-*/
+
 
 

@@ -19,7 +19,7 @@
         :per-page="perPage"
         aria-controls="image-table"
     ></b-pagination>
-    <b-button v-on:click="goToReservation()" >Buy</b-button>
+    <b-button v-on:click="goToBag()" >Buy</b-button>
   </div>
 </template>
 
@@ -69,7 +69,7 @@ export default {
     rowClicked(record) {
       this.setKolaciInformation(record);
     },
-    goToReservation() {
+    goToBag() {
       if (this.token !== "") {
        
         var kolac_object = {
