@@ -9,7 +9,7 @@
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
             <b-nav-item to="/">Home</b-nav-item>
-            <b-nav-item to="/">Bag</b-nav-item>
+            <b-nav-item v-if="token" to="/purchase">Bag</b-nav-item>
             <b-nav-item-dropdown text="Categories" right>
               <b-nav-item to="/torte" style="background-color: #87CEFA;" >Torte</b-nav-item > 
               <b-nav-item to="/kolaci" style="background-color: #87CEFA;">Kolaci</b-nav-item>

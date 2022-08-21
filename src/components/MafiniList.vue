@@ -1,11 +1,5 @@
 <template>
   <div>
-    <b-pagination
-        v-model="currentPage"
-        :total-rows="mafiniTable"
-        :per-page="perPage"
-        aria-controls="image-table"
-    ></b-pagination>
 
     <b-table class="table table-hover"
         id="image-table"
@@ -25,7 +19,7 @@
         :per-page="perPage"
         aria-controls="image-table"
     ></b-pagination>
-    <b-button v-on:click="goToReservation()" >Reserve</b-button>
+    <b-button v-on:click="goToReservation()" >Buy</b-button>
   </div>
 </template>
 
@@ -49,7 +43,9 @@ export default {
     ...mapState([
       'mafini',
       'token',
-        'mafiniInformation'
+        'mafiniInformation',
+        'purchaseInformation',
+        'purchases'
     ]),
     mafiniTable: function () {
       return this.mafini;
@@ -66,7 +62,8 @@ export default {
   methods: {
 
     ...mapMutations([
-      'setMafiniInformation'
+      'setMafiniInformation',
+      'setPurchasesInformation'
     ]),
 
     rowClicked(record) {
@@ -74,9 +71,20 @@ export default {
     },
     goToReservation() {
       if (this.token !== "") {
-        let mafinReservation = this.mafiniInformation
-        console.log(mafinReservation);
-        this.$router.push({ name: 'Reservations', params: { mafinReservation } });
+        //let mafinReservation = this.mafiniInformation
+        //console.log(mafinReservation);
+        //this.$router.push({ name: 'Reservations', params: { mafinReservation } });
+      
+       var mafin_object = {
+            naziv: this.mafiniInformation.naziv,
+            cena: this.mafiniInformation.cena
+        };
+      
+       this.setMafiniInformation("");
+       this.purchases.push(mafin_object);
+       this.$router.push({ name: 'Purchase'});
+
+      
       }
       else alert("You must be logged in");
     }

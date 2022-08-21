@@ -1,11 +1,6 @@
 <template>
   <div>
-    <b-pagination
-        v-model="currentPage"
-        :total-rows="purchaseTable"
-        :per-page="perPage"
-        aria-controls="image-table"
-    ></b-pagination>
+    <h1>Kupovina</h1>
 
     <b-table class="table table-hover"
         id="image-table"
@@ -19,26 +14,25 @@
         @row-clicked="rowClicked"
     >
     </b-table>
-    <b-pagination
-        v-model="currentPage"
-        :total-rows="purchaseTable.length"
-        :per-page="perPage"
-        aria-controls="image-table"
-    ></b-pagination>
-    <b-button v-on:click="goToReservation()" >Reserve</b-button>
+
+
   </div>
 </template>
 
 <script>
 
-import {  mapMutations , mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 
 export default {
   name: "PurchaseList",
 
+  props: {
+    
+  },
+
   data() {
     return {
-      fields: ['naziv, 'cena'],
+      fields: ['naziv', 'cena'],
       items: [],
       currentPage: 1,
       perPage: 10,
@@ -47,12 +41,12 @@ export default {
 
   computed: {
     ...mapState([
-      'purchase',
+      'purchases',
       'token',
         'purchaseInformation'
     ]),
     purchaseTable: function () {
-      return this.torte;
+      return this.purchases;
     }
   },
 
@@ -66,26 +60,35 @@ export default {
   methods: {
 
     ...mapMutations([
-      'setTorteInformation'
+        'removeToken',
+        'setToken',
+      'setPurchaseInformation'
     ]),
 
-    rowClicked(record) {
-      this.setTorteInformation(record);
-    },
-    goToReservation() {
-      if (this.token !== "") {
-        let torta = this.torteInformation
-        console.log(torta);
-        this.$router.push({ name: 'Reservation', params: { torta } });
-      }
-      else alert("You must be logged in!");
-    }
+    logout(){
+        this.removeToken();
+    }  
   }
 }
+
 </script>
 
 
-<style scoped>
-
+<style>
+  #app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  padding-bottom: 10px;
+}
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
 
 </style>

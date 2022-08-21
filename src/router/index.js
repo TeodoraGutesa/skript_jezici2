@@ -42,8 +42,8 @@ const routes = [
     component: Mafini
   },
   {
-    path: '/reservation',
-    name: 'Reservation',
+    path: '/purchase',
+    name: 'Purchase',
     component: Purchase
   },
 

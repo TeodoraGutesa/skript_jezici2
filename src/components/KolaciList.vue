@@ -1,12 +1,6 @@
 <template>
   <div>
-    <b-pagination
-        v-model="currentPage"
-        :total-rows="kolaciTable"
-        :per-page="perPage"
-        aria-controls="image-table"
-    ></b-pagination>
-
+  
     <b-table class="table table-hover"
         id="image-table"
         hover
@@ -25,7 +19,7 @@
         :per-page="perPage"
         aria-controls="image-table"
     ></b-pagination>
-    <b-button v-on:click="goToReservation()" >Reserve</b-button>
+    <b-button v-on:click="goToReservation()" >Buy</b-button>
   </div>
 </template>
 
@@ -49,7 +43,9 @@ export default {
     ...mapState([
       'kolaci',
       'token',
-        'kolaciInformation'
+        'kolaciInformation',
+        'purchaseInformation',
+        'purchases'
     ]),
     kolaciTable: function () {
       return this.kolaci;
@@ -66,7 +62,8 @@ export default {
   methods: {
 
     ...mapMutations([
-      'setKolaciInformation'
+      'setKolaciInformation',
+      'setPurchasesInformation'
     ]),
 
     rowClicked(record) {
@@ -74,9 +71,18 @@ export default {
     },
     goToReservation() {
       if (this.token !== "") {
-        let kolaciReservation = this.kolaciInformation
-        console.log(kolaciReservation);
-        this.$router.push({ name: 'Reservations', params: { kolaciReservation } });
+       
+        var kolac_object = {
+            naziv: this.kolaciInformation.naziv,
+            cena: this.kolaciInformation.cena
+        };
+      
+       this.setKolaciInformation("");
+       this.purchases.push(kolac_object);
+       this.$router.push({ name: 'Purchase'});
+
+
+      
       }
       else alert("You must be logged in!");
     }

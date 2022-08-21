@@ -1,12 +1,6 @@
 <template>
   <div>
-    <b-pagination
-        v-model="currentPage"
-        :total-rows="torteTable"
-        :per-page="perPage"
-        aria-controls="image-table"
-    ></b-pagination>
-
+   
     <b-table class="table table-hover"
         id="image-table"
         hover
@@ -25,7 +19,7 @@
         :per-page="perPage"
         aria-controls="image-table"
     ></b-pagination>
-    <b-button v-on:click="goToReservation()" >Reserve</b-button>
+    <b-button v-on:click="goToReservation()" >Buy</b-button>
   </div>
 </template>
 
@@ -49,7 +43,10 @@ export default {
     ...mapState([
       'torte',
       'token',
-        'torteInformation'
+        'torteInformation',
+        'purchaseInformation',
+        'purchases'
+
     ]),
     torteTable: function () {
       return this.torte;
@@ -66,7 +63,8 @@ export default {
   methods: {
 
     ...mapMutations([
-      'setTorteInformation'
+      'setTorteInformation',
+      'setPurchasesInformation'
     ]),
 
     rowClicked(record) {
@@ -74,9 +72,14 @@ export default {
     },
     goToReservation() {
       if (this.token !== "") {
-        let torta = this.torteInformation
-        console.log(torta);
-        this.$router.push({ name: 'Reservation', params: { torta } });
+      
+      var torta_object = {
+        naziv: this.torteInformation.naziv
+      };
+     
+       this.setTorteInformation("");
+       this.purchases.push(torta_object);
+       this.$router.push({ name: 'Purchase'});
       }
       else alert("You must be logged in!");
     }

@@ -20,7 +20,14 @@ export default new Vuex.Store({
     mafin: null,
     mafiniInformation:{
       naziv: '', cena: ''
+    },
+    
+    purchases: [],
+    purchase: null,
+    purchaseInformation:{
+      naziv: '', cena: ''
     }
+
   },
   mutations: {
     setToken(state, token) {
@@ -55,6 +62,15 @@ export default new Vuex.Store({
 
      setMafini(state, mafini){
        state.mafini = mafini;
+     },
+
+     setPurchasesInformation(state, purchase){
+      state.purchasesInformation.naziv = purchase.naziv;
+      state.purchasesInformation.cena = purchase.cena;
+     },
+
+     setPurchases(state, purchases){
+       state.purchases = purchases;
      }
 
   },
@@ -93,7 +109,7 @@ export default new Vuex.Store({
             }
           });
     },
-    
+
     fetchTorte({ commit }){
       fetch('http://localhost:7000/admin/torte',{
         headers: {
